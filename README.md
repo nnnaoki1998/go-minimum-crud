@@ -1,4 +1,5 @@
 # go-minimum-crud
+Golangで実装された最小限のCRUDアプリ
 
 ## コマンド
 
