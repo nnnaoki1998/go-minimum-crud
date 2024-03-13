@@ -1,0 +1,26 @@
+version: '3'
+services:
+  backend-devel:
+    container_name: go-minimum-crud-backend-devel
+    build:
+      context: .
+      dockerfile: Dockerfile_devel
+    tty: true
+    ports:
+      - 8080:8080
+    env_file:
+      - .devel.env
+    volumes:
+      - .:/opt
+    command: sh -c 'go mod tidy && air'
+
+  mysql:
+    image: mysql:8
+    container_name: go-minimum-crud-mysql
+    volumes:
+      - ./database/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./database/conf.d:/etc/mysql/conf.d
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysql

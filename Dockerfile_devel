@@ -1,0 +1,6 @@
+FROM golang:1.21.4-bullseye
+
+WORKDIR /opt
+
+# ホットリロードツール
+RUN go install github.com/cosmtrek/air@v1.49.0
